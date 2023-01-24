@@ -51,9 +51,6 @@ const SignIn = () => {
           <Link className=' ' to='/signup'>
             Üye değil misin? Üye ol
           </Link>
-          <Link className='' to='/forgotpassword'>
-            Şifremi Unuttum
-          </Link>
         </div>
       </form>
     </div>
