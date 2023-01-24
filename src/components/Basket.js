@@ -1,6 +1,6 @@
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../Firebase";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
 import {
   collection,
@@ -54,6 +54,20 @@ const Basket = () => {
       await deleteDoc(update);
     }
   };
+
+  if (basket.length === 0) {
+    return (
+      <div className='container mx-auto h-full flex items-center flex-col gap-2 p-10 w-3/5'>
+        <h1>
+          {" "}
+          Sepetinizde Ürün Bulunmamaktadır. Ürün eklemek için{" "}
+          <Link to='/' className='hover:text-red-500'>
+            tıklayınız
+          </Link>
+        </h1>
+      </div>
+    );
+  }
   return (
     <div className='container mx-auto h-full flex flex-col gap-2 p-10 w-3/5 '>
       {basket.map((item) => (
@@ -68,14 +82,16 @@ const Basket = () => {
 
           <div className='flex justify-between'>
             <p> Toplam : {Math.floor(item.amount * item.productPrice)} ₺</p>
-            <div className='flex gap-2'>
+            <div className='flex items-center gap-3'>
               <button
                 className='px-2 bg-gray-400 text-white'
                 onClick={() => incrementProduct(item.id, item.amount)}
               >
                 +
               </button>
-              <p>{item.amount}</p>
+              <p className='border p-1 w-10 flex items-center justify-center'>
+                {item.amount}
+              </p>
               <button
                 className='px-2 bg-gray-400 text-white'
                 onClick={() => decrementProduct(item.id, item.amount)}
