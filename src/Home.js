@@ -58,7 +58,12 @@ const Home = () => {
         </div>
         <div className='flex flex-col items-center min-h-screen p-10 '>
           <AddProduct />
-          <AllProducts />
+          <AllProducts
+            animation={animation}
+            setAnimation={setAnimation}
+            setAmounts={setAmounts}
+            amounts={amounts}
+          />
         </div>
       </div>
     );
