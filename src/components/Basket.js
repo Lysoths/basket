@@ -19,14 +19,18 @@ const ref2 = () => {
     return collection(db, auth.currentUser.uid);
   }
 };
-
 const Basket = () => {
   const [basket, setBasket] = useState([]);
+
+  let total = basket.map((item) => item.amount * item.productPrice);
+  let totalPrice = total.reduce((a, b) => a + b, 0);
+
   useEffect(() => {
     onSnapshot(ref2(), (snapshot) => {
       setBasket(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
     });
   }, [ref2]);
+
   const [user, isLoading] = useAuthState(auth);
   if (isLoading) {
     return <h1>Lütfen Bekleyiniz</h1>;
@@ -58,10 +62,9 @@ const Basket = () => {
   if (basket.length === 0) {
     return (
       <div className='container mx-auto h-full flex items-center flex-col gap-2 p-10 w-3/5'>
-        <h1>
-          {" "}
+        <h1 className=' tracking-wider'>
           Sepetinizde Ürün Bulunmamaktadır. Ürün eklemek için{" "}
-          <Link to='/' className='hover:text-red-500'>
+          <Link to='/' className='hover:text-red-500 underline'>
             tıklayınız
           </Link>
         </h1>
@@ -70,6 +73,9 @@ const Basket = () => {
   }
   return (
     <div className='container mx-auto h-full flex flex-col gap-2 p-10 w-3/5 '>
+      <Link className='hover:text-red-500' to='/'>
+        Mağazaya Dön..
+      </Link>
       {basket.map((item) => (
         <div
           className='flex justify-center flex-col border-2 border-red-500 p-3'
@@ -102,6 +108,9 @@ const Basket = () => {
           </div>
         </div>
       ))}
+      {totalPrice && (
+        <p>Toplam : {parseFloat(totalPrice).toLocaleString("tr-TR")} ₺</p>
+      )}
     </div>
   );
 };
