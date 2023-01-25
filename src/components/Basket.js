@@ -114,7 +114,10 @@ const Basket = () => {
             Toplam Tutar : {parseFloat(totalPrice).toLocaleString("tr-TR")} ₺
           </p>
         )}
-        <p className='bg-red-400 text-white p-1 rounded-md'>
+        <p
+          className='bg-red-400 text-white p-1 rounded-md cursor-pointer'
+          onClick={() => alert("Geçici Olarak Kullanım Dışı")}
+        >
           Alışverişi Tamamla
         </p>
       </div>
