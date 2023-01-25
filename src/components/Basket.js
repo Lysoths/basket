@@ -72,13 +72,13 @@ const Basket = () => {
     );
   }
   return (
-    <div className='container mx-auto h-full flex flex-col gap-2 p-10 w-3/5 '>
+    <div className='container mx-auto h-full flex flex-col gap-2 w-3/5 flex-wrap'>
       <Link className='hover:text-red-500' to='/'>
         Mağazaya Dön..
       </Link>
       {basket.map((item) => (
         <div
-          className='flex justify-center flex-col border-2  p-3'
+          className='flex justify-center flex-col border-2 w-5/5 p-3 rounded-xl'
           key={item.id}
         >
           <div>
@@ -86,8 +86,10 @@ const Basket = () => {
             <p>Ürün Adı : {item.productName}</p>
           </div>
 
-          <div className='flex justify-between'>
-            <p> Toplam : {Math.floor(item.amount * item.productPrice)} ₺</p>
+          <div className='flex items-center justify-between flex-wrap'>
+            <div className='flex justify-between'>
+              <p> Toplam : {Math.floor(item.amount * item.productPrice)} ₺</p>
+            </div>
             <div className='flex items-center gap-3'>
               <button
                 className='px-2 bg-red-400 text-white'
@@ -108,7 +110,7 @@ const Basket = () => {
           </div>
         </div>
       ))}
-      <div className='flex items-center justify-between border-b p-2 rounded-md'>
+      <div className='flex items-center justify-between border-b p-2 rounded-md flex-wrap'>
         {totalPrice && (
           <p>
             Toplam Tutar : {parseFloat(totalPrice).toLocaleString("tr-TR")} ₺
