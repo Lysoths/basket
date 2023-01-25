@@ -55,12 +55,6 @@ const AllProducts = ({ setAnimation, amounts, setAmounts }) => {
     });
   }, [ref2]);
 
-  const basketInfo = () => {
-    if (basket.length === 0) {
-      setAnimation("material-symbols-outlined text-3xl element");
-    }
-  };
-
   const addBasket = async (id, name, price, image) => {
     const update = doc(db, auth.currentUser.uid, id);
 
@@ -78,8 +72,6 @@ const AllProducts = ({ setAnimation, amounts, setAmounts }) => {
         amount: 1,
         productImage: image,
       });
-
-      basketInfo();
     }
   };
   return (

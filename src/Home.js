@@ -82,7 +82,15 @@ const Home = () => {
             )}
 
             <Link to='/sepet' className='flex items-center justify-center '>
-              <span className={animation}>shopping_cart</span>
+              {amounts === 0 ? (
+                <span className='material-symbols-outlined text-3xl'>
+                  shopping_cart
+                </span>
+              ) : (
+                <span className='material-symbols-outlined text-3xl element'>
+                  shopping_cart
+                </span>
+              )}
             </Link>
             <button
               className='text-white bg-red-500 p-2 rounded-md'
