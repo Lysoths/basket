@@ -78,7 +78,7 @@ const Basket = () => {
       </Link>
       {basket.map((item) => (
         <div
-          className='flex justify-center flex-col border-2 border-red-500 p-3'
+          className='flex justify-center flex-col border-2  p-3'
           key={item.id}
         >
           <div>
@@ -90,7 +90,7 @@ const Basket = () => {
             <p> Toplam : {Math.floor(item.amount * item.productPrice)} ₺</p>
             <div className='flex items-center gap-3'>
               <button
-                className='px-2 bg-gray-400 text-white'
+                className='px-2 bg-red-400 text-white'
                 onClick={() => incrementProduct(item.id, item.amount)}
               >
                 +
@@ -99,7 +99,7 @@ const Basket = () => {
                 {item.amount}
               </p>
               <button
-                className='px-2 bg-gray-400 text-white'
+                className='px-2 bg-red-400 text-white'
                 onClick={() => decrementProduct(item.id, item.amount)}
               >
                 -
@@ -108,9 +108,16 @@ const Basket = () => {
           </div>
         </div>
       ))}
-      {totalPrice && (
-        <p>Toplam : {parseFloat(totalPrice).toLocaleString("tr-TR")} ₺</p>
-      )}
+      <div className='flex items-center justify-between border-b p-2 rounded-md'>
+        {totalPrice && (
+          <p>
+            Toplam Tutar : {parseFloat(totalPrice).toLocaleString("tr-TR")} ₺
+          </p>
+        )}
+        <p className='bg-red-400 text-white p-1 rounded-md'>
+          Alışverişi Tamamla
+        </p>
+      </div>
     </div>
   );
 };
