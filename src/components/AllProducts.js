@@ -105,15 +105,17 @@ const AllProducts = ({ setAnimation, amounts, setAmounts }) => {
               </div>
               <div className='mt-2'>
                 <button
-                  className='p-2 bg-red-500 text-white rounded-md'
-                  onClick={() =>
+                  className='p-2 bg-red-500 text-white rounded-md active:scale-95'
+                  onClick={(e) => {
                     addBasket(
                       item.id,
                       item.productName,
                       item.productPrice,
                       item.productImage
-                    )
-                  }
+                    );
+
+                    e.target.innerText = "Ürün Eklendi";
+                  }}
                 >
                   Sepete Ekle
                 </button>
